@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Hexo</title>
+  <title>DaRK52&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
+<meta property="og:title" content="DaRK52&#39;s blog">
 <meta property="og:url" content="http://example.com/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="DaRK52&#39;s blog">
 <meta property="og:locale" content="en_US">
-<meta property="article:author" content="John Doe">
+<meta property="article:author" content="DaRK52">
 <meta name="twitter:card" content="summary">
   
-    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="DaRK52&#39;s blog" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -152,6 +152,83 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-软件工程总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/05/21/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E6%80%BB%E7%BB%93/">软件工程总结</a>
+    </h1>
+  
+
+        
+        <a href="/2021/05/21/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E6%80%BB%E7%BB%93/" class="archive-article-date">
+  	<time datetime="2021-05-21T06:11:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>虽然软件工程这门课还没有结束，但是剩下的部分和我的关系应该也不大了，现在来总结一下这一门在寒假的时候我还很期待的课。</p>
+<h2 id="开始的课堂"><a href="#开始的课堂" class="headerlink" title="开始的课堂"></a>开始的课堂</h2><p>说实话我觉得软件工程开头这三节要去教室里上的课干脆删了得了，可以说是毫无作用。最有用的可能是教了一点git的使用，但事实上在开发过程中我们对于git的使用还是很少的，很喜欢杰哥的一句话</p>
+<blockquote>
+<p>这种水平的软件开发最合适的版本管理是qq群</p>
+</blockquote>
+<p>我们应该是在一次次的merge出现冲突后尽力去修改这些不同，但由于平常大家一直在摸鱼，大版本更新的时候这样的冲突实在令人头大。</p>
+<p>剩余的课程基本就是扯淡了，至少对于我们这些开发经验为零的学生来说。课堂上讲的或许很有道理，是一些在开发过程容易碰到的坑，但是对于零基础的学生，介绍一些框架的简单使用会不会更合适一些？</p>
+<h2 id="无尽的摸鱼"><a href="#无尽的摸鱼" class="headerlink" title="无尽的摸鱼"></a>无尽的摸鱼</h2><p>三四月份我基本啥也没干，虽然理论上我应该去研究Android studio的使用，但回头过来看我就是一直在摸鱼，如果当时研究地更清楚一点，或许后面就不会陷入那种”能用就行“的境地。</p>
+<p>不过队友还是相当给力，大概在四月中旬做了一个界面出来，我当时狂喜，因为我觉得那个界面已经离成功很近了，<del>低情商：应该没我什么事了，可以继续摸了</del>，我当时想：五一过后应该就可以弄完了吧。</p>
+<h2 id="急了急了"><a href="#急了急了" class="headerlink" title="急了急了"></a>急了急了</h2><p>五一我又不幸发烧，每天就只能到华为云上看看队友有没有push代码上来，不看不知道，一看给我人整麻了，最近提交：两周前（事后知道只是队友们不太喜欢用git）。当时我血压直线上升，感觉好像不能再摸了，于是就开始着手打算完善完善功能。</p>
+<p>然后我发现，之前那个界面竟然真的就是个界面，什么功能都没有？？？虽然我们app的功能也不复杂，就是一个查询空教室和一个查询课程，但是我没想到这两周再加一个五一假期都没什么进度，于是我急了。这样的心态导致最后我弄出了一份屎一样的代码。</p>
+<p>当时的问题其实主要就是如何使用jdbc连接mysql数据库，如果能够完成这步，应该就能通过路由器端口转发实现在交大内部能用（不过似乎实验了一下在交大内部也不能用了？），当时急躁的我就从google上找了一份别人写的代码过来用，诶，效果很好，于是我就没看这段代码具体是怎么弄的，就想着其实要数据库的地方也不多，大不了就一直复制就好了。</p>
+<p>直到后面，我发现需要数据库的地方越来越多，最开始是查询空教室和查询课程两个地方，但是空教室要加上这个教室今天的课程，课程要在listview里面点进去有它的详细信息，又要能收藏，还要在<font color = #FF0000>我的收藏</font>里面能够取消收藏，再加上后面不知道给<font color = #FF0000>设置</font>安排什么功能就安排了一个设置昵称的功能。**<font color=#FFF000>我越写越后悔为什么当时没有仔细研究这段代码然后自己把它写成一个类来复用</font>**，但是当时已经写了很多了我又懒得重构（同时由于迷之自信觉得很快能写完也没怎么写注释）。</p>
+<h2 id="Bug？还是彩蛋？"><a href="#Bug？还是彩蛋？" class="headerlink" title="Bug？还是彩蛋？"></a>Bug？还是彩蛋？</h2><p>到了五月份我们开始疯狂开会一起开发，进度提的很快，基本功能90%都实现了，数据库也使用了华为云数据库（我到现在都不理解为什么他那个教程要我先买云服务器再买云数据库），但是在我们将底下导航栏重构的时候出现了很多bug。最开始我们底下的导航栏是三个button，但是这样做会导致一直按就会一直触发activity返回的时候肯定是返回上一层，正常app哪有这样弄的，所以就换成了android studio它自己带的模板，底下是三个fragment。在我弄这个app的最后一天，还剩一个bug（还有两个功能由于我太菜了没做出来），这个bug是点两次home，整个app会变空白，触发原因是在搜索昵称的时候应该有一个回传数据搜索的函数，但是我没写，我直接在搜索的函数里面一起设置了setText。当时我把这个app导出发给韩神，本来这个bug我不想修了，大不了就是显示不出昵称。</p>
+<p><strong>未完待续</strong></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/05/21/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E6%80%BB%E7%BB%93/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -237,7 +314,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2021 John Doe
+    		&copy; 2021 DaRK52
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
