@@ -152,40 +152,28 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-DNS信息收集" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Go基础" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/05/26/DNS%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">DNS信息收集</a>
+      <a class="article-title" href="/2022/05/27/Go%E5%9F%BA%E7%A1%80/">Go基础</a>
     </h1>
   
 
         
-        <a href="/2021/05/26/DNS%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" class="archive-article-date">
-  	<time datetime="2021-05-26T13:48:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-26</time>
+        <a href="/2022/05/27/Go%E5%9F%BA%E7%A1%80/" class="archive-article-date">
+  	<time datetime="2022-05-27T10:21:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-27</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="DNS相关知识"><a href="#DNS相关知识" class="headerlink" title="DNS相关知识"></a>DNS相关知识</h1><p>A记录：将域名指向ipv4地址</p>
-<p>Cname记录：域名指向域名</p>
-<p>MX记录：电子邮箱服务指向邮件服务器</p>
-<p>NS记录：指定域名解析服务器，可以指定子域名由某个特殊的域名解析服务器来解析</p>
-<p>SOA记录：记录在NS记录中哪台解析服务器是主服务器</p>
-<p>PTR记录：通过ip地址反向查询域名</p>
-<p>AXFR请求：请求在DNS主服务器上更新信息</p>
-<p>域传送：DNS服务器存在主服务器和后备服务器，后备服务器防止主服务器在挂了之后就没法提供服务，所以后备服务器就存储主服务器的数据，就会向主服务器发出请求<br>但是可能没有被授权的用户得到了这些域名和ip的记录，就是域传送漏洞</p>
-<h1 id="DNS信息收集"><a href="#DNS信息收集" class="headerlink" title="DNS信息收集"></a>DNS信息收集</h1><p>1.dnsrecon命令</p>
-<p>dnsrecon -d 域名</p>
-<p>获取DNS服务器和ip地址</p>
-<p>dnsrecon -r ip地址      反向查找是否有域名</p>
-<p>dnsrecon -d 域名 -D xxx.txt    -t xxx     -D指定字典，使用字典来爆破子域名，-t指定枚举类型</p>
-
+        <h1 id="Go语言基础"><a href="#Go语言基础" class="headerlink" title="Go语言基础"></a>Go语言基础</h1><p>go是一种支持垃圾回收机制的内存安全的语言，出了融合了多种语言的特点，它自己还有一些比如channel，以及gorountine这样的机制，在并发编程方面很方便。</p>
+        
       
 
       
@@ -197,7 +185,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/05/26/DNS%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">展开全文 >></a>
+          <a class="article-more-a" href="/2022/05/27/Go%E5%9F%BA%E7%A1%80/">展开全文 >></a>
         </p>
       
 
@@ -389,7 +377,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2021 DaRK52
+    		&copy; 2022 DaRK52
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
