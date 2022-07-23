@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Kotlin使用retrofit进行网络请求 | DaRK52&#39;s blog</title>
+  <title>Git简单使用 | DaRK52&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="关于retrofit使用的文章，可以参考Carson带你学Android：网络请求库Retrofit使用教程(含实例讲解)，本文主要是记录一下kotlin使用retrofit时的一些细节。">
+  <meta name="description" content="为什么要写这篇文章？我自己也不会git的一些高级操作，什么cherry-pick之类的从未用过。但是我之前某天听说某大学的实验室里的同学，合代码竟然使用一群人坐在一起复制粘贴的形式，我大受震撼，决定专门为他写一篇git简单使用的文章。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Kotlin使用retrofit进行网络请求">
-<meta property="og:url" content="http://example.com/2022/07/23/Kotlin%E4%BD%BF%E7%94%A8retrofit%E8%BF%9B%E8%A1%8C%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82/index.html">
+<meta property="og:title" content="Git简单使用">
+<meta property="og:url" content="http://example.com/2022/07/23/Git%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/index.html">
 <meta property="og:site_name" content="DaRK52&#39;s blog">
-<meta property="og:description" content="关于retrofit使用的文章，可以参考Carson带你学Android：网络请求库Retrofit使用教程(含实例讲解)，本文主要是记录一下kotlin使用retrofit时的一些细节。">
+<meta property="og:description" content="为什么要写这篇文章？我自己也不会git的一些高级操作，什么cherry-pick之类的从未用过。但是我之前某天听说某大学的实验室里的同学，合代码竟然使用一群人坐在一起复制粘贴的形式，我大受震撼，决定专门为他写一篇git简单使用的文章。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-07-23T06:25:40.000Z">
-<meta property="article:modified_time" content="2022-07-23T06:42:35.573Z">
+<meta property="article:published_time" content="2022-07-23T07:35:44.000Z">
+<meta property="article:modified_time" content="2022-07-23T11:37:43.833Z">
 <meta property="article:author" content="DaRK52">
 <meta property="article:tag" content="随笔">
 <meta name="twitter:card" content="summary">
@@ -155,46 +155,63 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Kotlin使用retrofit进行网络请求" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Git简单使用" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Kotlin使用retrofit进行网络请求
+      Git简单使用
     </h1>
   
 
         
-        <a href="/2022/07/23/Kotlin%E4%BD%BF%E7%94%A8retrofit%E8%BF%9B%E8%A1%8C%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82/" class="archive-article-date">
-  	<time datetime="2022-07-23T06:25:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-23</time>
+        <a href="/2022/07/23/Git%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/" class="archive-article-date">
+  	<time datetime="2022-07-23T07:35:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-23</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>关于retrofit使用的文章，可以参考<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/a3e162261ab6">Carson带你学Android：网络请求库Retrofit使用教程(含实例讲解)</a>，本文主要是记录一下kotlin使用retrofit时的一些细节。</p>
+        <p>为什么要写这篇文章？我自己也不会git的一些高级操作，什么cherry-pick之类的从未用过。但是我之前某天听说某大学的实验室里的同学，合代码竟然使用一群人坐在一起复制粘贴的形式，我大受震撼，决定专门为他写一篇git简单使用的文章。</p>
 <span id="more"></span>
 
-<p>在开始使用前，建议先找一个能够返回json格式数据的网站，我使用的是<a target="_blank" rel="noopener" href="https://ky3cjglr.fn.bytedance.net/aweme/user/profile">这个网站</a>，但是这个网站只有在字节内网里才能使用。<br>使用方式：<br>1.首先记得导入依赖和开启应用网络权限</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">implementation <span class="string">&#x27;com.squareup.retrofit2:retrofit:2.7.0&#x27;</span></span><br><span class="line">implementation <span class="string">&#x27;com.squareup.retrofit2:converter-gson:2.0.2&#x27;</span></span><br><span class="line">&lt;uses-permission android:name=<span class="string">&quot;android.permission.INTERNET&quot;</span>/&gt;</span><br></pre></td></tr></table></figure>
-<p>2.然后我们需要建立与返回数据相对应结构的数据类用来接收数据，在反序列化的过程中，字段可以比json字符串里面的键少。</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">        <span class="string">&quot;status_code&quot;</span>: <span class="number">0</span>,</span><br><span class="line">        <span class="string">&quot;user&quot;</span>: &#123;</span><br><span class="line">            </span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">&quot;extra&quot;</span>: &#123;</span><br><span class="line">                <span class="string">&quot;now&quot;</span>: <span class="number">0</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">&quot;log_pb&quot;</span>: &#123;</span><br><span class="line">                <span class="string">&quot;impr_id&quot;</span>: <span class="string">&quot;0&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>所以我们建立如下结构的数据类</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">ProfileModel</span></span>(</span><br><span class="line">    <span class="meta">@SerializedName(<span class="meta-string">&quot;status_code&quot;</span>)</span></span><br><span class="line">    <span class="keyword">var</span> statusCode: <span class="built_in">Int</span>,</span><br><span class="line">    <span class="meta">@SerializedName(<span class="meta-string">&quot;user&quot;</span>)</span></span><br><span class="line">    <span class="keyword">var</span> user: UserModel,</span><br><span class="line">    <span class="meta">@SerializedName(<span class="meta-string">&quot;extra&quot;</span>)</span></span><br><span class="line">    <span class="keyword">var</span> extra: ExtraModel,</span><br><span class="line">    <span class="meta">@SerializedName(<span class="meta-string">&quot;log_pb&quot;</span>)</span></span><br><span class="line">    <span class="keyword">var</span> logPb: LogPbModel</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>想要简单地掌握git的使用，可以参考<a target="_blank" rel="noopener" href="https://learngitbranching.js.org/?locale=zh_CN">这个网站</a>，它提供了可视化分支，能够让人了解这些命令的使用，但是想要熟练掌握git的使用，必须大量使用，不然过两天这些命令肯定忘了。</p>
+<h2 id="什么是Git？"><a href="#什么是Git？" class="headerlink" title="什么是Git？"></a>什么是Git？</h2><p>这些已经有很多相关博客写了git的前世今生，可以参考<a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/896043488029600/896067008724000">这篇博客</a>，总的来说，git是一个分布式的代码版本管理系统。</p>
+<h2 id="单人常用git操作"><a href="#单人常用git操作" class="headerlink" title="单人常用git操作"></a>单人常用git操作</h2><p>首先需要配置自己的用户名和邮箱，这一步其实是因为如果我们需要把自己的代码推送到远程仓库的时候需要用来标识自己的信息，至于如果不设置在本地能不能使用我不是很确定，但是我印象中应该是不能使用的，你操作的时候它应该会先提示你去设置。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;DaRK52&quot;</span><br><span class="line">git config --global user.email &quot;DaRK52@example.com&quot;</span><br></pre></td></tr></table></figure>
+<p>设置完了之后我们就可以新建一个文件夹，在里面创建一个仓库，然后加点东西进行提交，学会这三步，明天上百度（（</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line">git add 文件名/或者直接.表示当前目录也行</span><br><span class="line">git commit -m &quot;Message&quot;</span><br></pre></td></tr></table></figure>
+<p>add的作用是把文件加进追踪，如果你不add这个文件，那git是不会记录它的变化的，commit的时候需要写一下提交信息，表示这次提交干了什么，比如修改了某个类的构造方法，或者是调整了布局的参数等等。</p>
+<p>那我commit完了之后就会有一条记录，怎么查看这条记录呢，就通过git log，它有各种参数，可以让这个分支的图看上去更舒服</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log --graph --xxxx</span><br></pre></td></tr></table></figure>
+<p>如果觉得我这个commit有问题，想回到之前的版本，可以使用reset，HEAD就是当前分支指向的头部，可以理解成一个指针，^就是上一个版本，所以下面这条命令的用处就是回到上一次提交，如果git reset HEAD就是回到当前提交，如果–hard就是消除所有没有commit的改变</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset HEAD^</span><br></pre></td></tr></table></figure>
 
-<p>3.然后我们创建网络请求的接口，我们会通过这个接口去进行网络请求</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GET(<span class="meta-string">&quot;/aweme/user/profile&quot;</span>)</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">fetchProfileModel</span><span class="params">()</span></span>: Call&lt;ProfileModel&gt;</span><br></pre></td></tr></table></figure>
-<p>完整的url由baseUrl和注解上的url组合而成，具体组合规则可以看我开头推荐的那篇文章，关于绝对路径和相对路径的情况说的很清楚</p>
-<p>4.我们需要retrofit对象来创建一个实现这个接口的对象，kotlin可以使用伴生对象来完成</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">companion</span> <span class="keyword">object</span> &#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">create</span><span class="params">()</span></span>: IFetchProfile &#123;</span><br><span class="line">        <span class="keyword">val</span> builder = Retrofit.Builder().addConverterFactory(GsonConverterFactory.create()).baseUrl(<span class="string">&quot;https://ky3cjglr.fn.bytedance.net/&quot;</span>)</span><br><span class="line">            .build()</span><br><span class="line">        <span class="keyword">return</span> builder.create(IFetchProfile::<span class="keyword">class</span>.java)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>一个自闭的开发者，上面这些命令基本已经够了，但是我们需要网络的力量来帮助我们，所以我们需要去网上找点代码看看能不能抄一抄改一改。git clone可以帮助我们下载代码托管平台上的代码，比如github，gitee上的代码。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone git@github.com:DaRK-52/bilibiliPlayer.git</span><br></pre></td></tr></table></figure>
 
-<p>5.然后就可以通过获得的这个对象发出call了，具体就是调用之前写的fetchProfileModel方法返回的call对象，通过enqueue方法发出网络请求，这个请求是异步的，所以需要实现Callback&lt;&gt;中的两个方法，onResponse和onFailure，分别对应成功和失败</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">IFetchProfile.create().fetchProfileModel().enqueue(<span class="keyword">object</span> : Callback&lt;ProfileModel&gt; &#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onResponse</span><span class="params">(call: <span class="type">Call</span>&lt;<span class="type">ProfileModel</span>&gt;, response: <span class="type">Response</span>&lt;<span class="type">ProfileModel</span>&gt;)</span></span> &#123;</span><br><span class="line">        <span class="comment">// success</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onFailure</span><span class="params">(call: <span class="type">Call</span>&lt;<span class="type">ProfileModel</span>&gt;, t: <span class="type">Throwable</span>)</span></span> &#123;</span><br><span class="line">        <span class="comment">// failure</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>也可以尝试把这个call也封装起来，用kotlin的委托来创建一个util对象</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">object</span> FetchProfileUtil : IFetchProfile  <span class="keyword">by</span> IFetchProfile.create() &#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">fetchProfile</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">this</span>.fetchProfileModel().enqueue(<span class="keyword">object</span> : Callback&lt;ProfileModel&gt; &#123;</span><br><span class="line">            <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onResponse</span><span class="params">(call: <span class="type">Call</span>&lt;<span class="type">ProfileModel</span>&gt;, response: <span class="type">Response</span>&lt;<span class="type">ProfileModel</span>&gt;)</span></span> &#123;</span><br><span class="line">                <span class="comment">// success</span></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onFailure</span><span class="params">(call: <span class="type">Call</span>&lt;<span class="type">ProfileModel</span>&gt;, t: <span class="type">Throwable</span>)</span></span> &#123;</span><br><span class="line">                <span class="comment">// failure</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="多人合作常用git操作"><a href="#多人合作常用git操作" class="headerlink" title="多人合作常用git操作"></a>多人合作常用git操作</h2><p>先不谈远程代码托管的问题，我们就考虑一台电脑上有多个分支，分别属于不同的同学我们怎么处理。通常来说，我们会有一个dev分支，然后每个同学会有自己的分支，然后把自己分支的改动合并到dev分支中。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git checkout dev</span><br><span class="line">git merge DaRK52</span><br><span class="line"><span class="meta">#</span><span class="bash"> git rebase DaRK52</span></span><br></pre></td></tr></table></figure>
+<p>多人合作时，git merge和git rebase就是两个我们必备的操作，先来说git merge，它就是把一个分支合并到另一个分支里，比如上面的操作，会把DaRK52分支合并到dev分支里面，如果没有冲突，就能够正常合入。</p>
+<p>那如果有冲突怎么办？此时merge的时候会显示有conflict，并且git bash会有一个merging的标志，这个时候千万不要慌，打开你的IDE，把这些冲突修改了，冲突会如下显示</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</span><br><span class="line">789</span><br><span class="line">=======</span><br><span class="line">456</span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt;&gt;&gt;&gt;&gt; dev</span></span><br></pre></td></tr></table></figure>
+<p>一个是当前的状态，一个是合入的分支的状态，只要把这段选一个自己想要的实现就行了。解决完了所有冲突后再add,commit就解决问题了。</p>
+<p>然后是rebase，rebase和merge的区别在于基这个概念，rebase翻译成中文叫变基，实际上就是变动了一条分支的祖辈，merge的分支原来的结构是不变的，只是到merge的地方合并起来了，但是rebase的分支会拉成一条直线，被rebase的分支会完全变成rebase的分支的前面，这段文字解释不清楚，建议用上面那个可视化网站看一下，不过小型项目硬merge问题也不大，rebase主要是能够比较清楚地梳理分支结构。另外值得一提的是，rebase发生conflicts可能不只要解决一次，它会把两个分支历史上发生的冲突全部解决一遍，有兴趣可以自己研究一下。</p>
+<h2 id="远程git常用操作"><a href="#远程git常用操作" class="headerlink" title="远程git常用操作"></a>远程git常用操作</h2><p>我们需要先保证我们和远程代码托管平台的数据通信是安全的，那么怎么保证安全呢，当然是通过加密，以github为例，我们先在本地通过ssh-keygen生成一个公私钥对，上传公钥到github，本地存私钥，通信的时候先用公私钥对交换通信密钥，再用通信密钥进行通信，至于这段怎么配置，网上教程也是一大把，随便搜一下就行。</p>
+<p>最后讲一下远程相关的一些操作，首先需要添加远程的仓库地址</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin xxxxx</span><br></pre></td></tr></table></figure>
+<p>这里的origin也可以是别的名字，这只是个主机名，等会push的时候用同一个就行，包括一个本地仓库绑定多个远程仓库，比如github搞一份，gitee也搞一份就是通过设置多个主机名来操作的。</p>
+<p>然后我们就可以push我们写的代码了</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push -u origin branch_name</span><br></pre></td></tr></table></figure>
+<p>我的建议是添加上这个-u，貌似意思是跟踪这个分支，实际效果就是第一次push完了之后再push就只需要git push而不用写后面的主机名和分支名的，它默认就是push这个分支到远程同名分支。如果git push出现冲突，我们就需要先使用git pull将远程代码拉下来解决冲突，然后 add，commit，然后再push。</p>
+<p>那git pull又是什么操作呢，首先我们要了解git fetch这个命令，这个命令可以把远程分支的代码拉下来，但是不会自动合并到我们的分支，所以我们需要git rebase或者git merge合并分支，这也就是为什么git pull会需要你设置模式是merge还是rebase，至于如果git pull也出现问题，就照着merge/rebase出冲突的方法解决好了。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull orgin branch_name = git fetch + git merge/git rebase</span><br></pre></td></tr></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>git操作博大精深，还有很多别的操作，比如cherry-pick,git-lfs之类的，但是一切的关键还是要经常使用才能熟练掌握。在使用git的过程中，犯错是难免的，我认识一个人曾经因为rebase错了导致自己一天写的几百行代码没了，他现在精通reset的用法，不能因为一次reset错就直接不使用git这个工具，转而去使用一些稳妥但原始的方法。当然，版本管理工具有很多，svn之类的也不是不行，但是一个没有版本管理的项目，无疑是问题巨大的。</p>
+
       
 
       
@@ -294,7 +311,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2022/07/23/Kotlin%E4%BD%BF%E7%94%A8retrofit%E8%BF%9B%E8%A1%8C%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2022/07/23/Git%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -308,15 +325,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2022/07/23/Git%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Git简单使用
-        
-      </div>
-    </a>
   
+    <a href="/2022/07/23/Kotlin%E4%BD%BF%E7%94%A8retrofit%E8%BF%9B%E8%A1%8C%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Kotlin使用retrofit进行网络请求</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
