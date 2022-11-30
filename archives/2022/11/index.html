@@ -6,17 +6,13 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>设计模式总结（二） | DaRK52&#39;s blog</title>
+  <title>Archives: 2022/11 | DaRK52&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="概述本文将总结以下几种设计模式  ProtoType Builder Bridge Strategy Composite">
-<meta property="og:type" content="article">
-<meta property="og:title" content="设计模式总结（二）">
-<meta property="og:url" content="http://example.com/2022/08/08/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%80%BB%E7%BB%93%EF%BC%88%E4%BA%8C%EF%BC%89/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="DaRK52&#39;s blog">
+<meta property="og:url" content="http://example.com/archives/2022/11/index.html">
 <meta property="og:site_name" content="DaRK52&#39;s blog">
-<meta property="og:description" content="概述本文将总结以下几种设计模式  ProtoType Builder Bridge Strategy Composite">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-08-08T14:19:49.000Z">
-<meta property="article:modified_time" content="2022-08-08T14:22:27.876Z">
 <meta property="article:author" content="DaRK52">
 <meta name="twitter:card" content="summary">
   
@@ -154,221 +150,60 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-设计模式总结（二）" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      设计模式总结（二）
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2022" class="archive-year">2022</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2022/11/30/TSP%20%E7%8A%B6%E5%8E%8Bdp%E8%A7%A3%E6%B3%95/" class="archive-article-date">
+  	<time datetime="2022-11-30T07:35:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-30</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2022/11/30/TSP%20%E7%8A%B6%E5%8E%8Bdp%E8%A7%A3%E6%B3%95/">TSP 状压dp解法</a>
     </h1>
   
 
-        
-        <a href="/2022/08/08/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%80%BB%E7%BB%93%EF%BC%88%E4%BA%8C%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2022-08-08T14:19:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>本文将总结以下几种设计模式</p>
-<ul>
-<li>ProtoType</li>
-<li>Builder</li>
-<li>Bridge</li>
-<li>Strategy</li>
-<li>Composite</li>
-</ul>
-<span id="more"></span>
+        <div class="article-info info-on-right">
+          
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Course</a>
+        		</li>
+      		
+		</ul>
+	</div>
 
-<h2 id="ProtoType（原型模式）"><a href="#ProtoType（原型模式）" class="headerlink" title="ProtoType（原型模式）"></a>ProtoType（原型模式）</h2><p>ProtoType的目的是不通过类来生成实例，而是通过实例来生产实例。书上总结了原型模式的三点好处，分别是</p>
-<blockquote>
-<ul>
-<li>对象种类繁多，无法将它们整合到一个类中</li>
-<li>难以根据类来生产实例（根据类来生产实例的过程太复杂）</li>
-<li>解耦框架和生产的实例</li>
-</ul>
-</blockquote>
-<p>在原型模式中，需要注意的是，我们是<strong>通过实例来生产实例</strong>，而不是反复获取同一个实例，所以尽管后面的例子看上去很奇怪，会用kotlin中的copy方法（java中的clone方法）复制出一个实例，但它的意思其实是我们生产的实例和原来的实例不是同一个实例。</p>
-<p>那么具体要怎么根据实例来生产实例呢？很简单，用一个HashMap来注册键和具体实例，需要获取实例的时候，就用HashMap里面的实例copy出一个新的实例使用。这里copy正常情况下肯定是浅拷贝，如果需要深拷贝，可以自己override。（深拷贝和浅拷贝的区别是类里的每个非基本字段是否指向同一个引用）</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Manager</span> </span>&#123;</span><br><span class="line">    <span class="keyword">val</span> hashMap: HashMap&lt;String, Product&gt; = HashMap()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">register</span><span class="params">(key: <span class="type">String</span>, p: <span class="type">Product</span>)</span></span> &#123;</span><br><span class="line">        hashMap.put(key, p)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">create</span><span class="params">(s: <span class="type">String</span>)</span></span>: Product &#123;</span><br><span class="line">        <span class="keyword">return</span> hashMap.<span class="keyword">get</span>(s)?.createCopy() ?: MessageBox(<span class="string">&quot;#&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">MessageBox</span></span>(<span class="keyword">val</span> decorChar: String): Product &#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">createCopy</span><span class="params">()</span></span>: Product &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.copy()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">use</span><span class="params">(s: <span class="type">String</span>)</span></span> &#123;</span><br><span class="line">        println(decorChar + s + decorChar)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这个例子有很奇怪的一点就是为什么我们去创建了一个新的实例而不是用原来那个实例，当然在这个例子中，我们去使用同一个实例是完全可以的，但是我们可以结合别的设计模式，比如Decorator模式来增强它的能力，那时候就不完全是同一个实例，而是在这个实例之上增强能力。</p>
-<h2 id="Builder模式"><a href="#Builder模式" class="headerlink" title="Builder模式"></a>Builder模式</h2><p>设计模式中借鉴了很多生活中的经验，比如万丈高楼不是一下子造完的，通常我们可以拆分出很多步骤来建造一栋楼。那么对于程序来说，建造一个复杂的对象并不比建造一栋楼在流程上简单多少，建楼，我们需要先打地基，再一层一层搭，生产对象的时候，我们也可以一步一步慢慢搭。</p>
-<p>我个人觉得书上的例子有些不妥，因为它最后是在Builder里面获取来最后的结果，我认为可能在Director里面调用Builder获取结果会更加合理一些。</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TextBuilder</span>: <span class="type">Builder &#123;</span></span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">val</span> buffer = StringBuilder()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">makeTitle</span><span class="params">(title: <span class="type">String</span>)</span></span>: Builder &#123;</span><br><span class="line">        buffer.append(<span class="string">&quot;---------------\n&quot;</span>)</span><br><span class="line">        buffer.append(<span class="string">&quot;Title: <span class="variable">$title</span> \n&quot;</span>)</span><br><span class="line">        buffer.append(<span class="string">&quot;---------------\n&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">makeItems</span><span class="params">(items: <span class="type">List</span>&lt;<span class="type">String</span>&gt;)</span></span>: Builder &#123;</span><br><span class="line">        <span class="keyword">for</span> (item <span class="keyword">in</span> items) &#123;</span><br><span class="line">            buffer.append(item + <span class="string">&quot;\n&quot;</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">close</span><span class="params">()</span></span>: Builder &#123;</span><br><span class="line">        buffer.append(<span class="string">&quot;That&#x27;s the end.\n&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">getResult</span><span class="params">()</span></span>: String &#123;</span><br><span class="line">        <span class="keyword">return</span> buffer.toString()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Directory</span></span>(<span class="keyword">val</span> builder: Builder) &#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">construct</span><span class="params">()</span></span> &#123;</span><br><span class="line">        println(builder.makeTitle(<span class="string">&quot;2022/7/28&quot;</span>)</span><br><span class="line">            .makeItems(listOf(<span class="string">&quot;Day0&quot;</span>, <span class="string">&quot;Day1&quot;</span>, <span class="string">&quot;Day2&quot;</span>))</span><br><span class="line">            .close()</span><br><span class="line">            .getResult())</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>并且Builder模式常常与链式调用结合使用，这样形式上看上去更优美，所以我这边改造成了上面这段代码的样子。</p>
-<h2 id="Bridge模式"><a href="#Bridge模式" class="headerlink" title="Bridge模式"></a>Bridge模式</h2><p>Bridge模式的目的是分离类的<strong>实现层次</strong>和<strong>功能层次</strong>，那么我们首先就要知道什么是类的实现层次和类的功能层次</p>
-<p>我们使用继承的时候，通常会有两种场景</p>
-<ul>
-<li>当我们需要给一个类添加功能的时候，通常会创建一个子类来继承它，这样就会多一层，这就是功能层次</li>
-<li>我们将一种行为抽象成一个抽象类或者接口，底下有不同的类来实现这个接口或者抽象类导致的层次</li>
-</ul>
-<p>如果没有Bridge模式，这两种层次通常是混在一起的，一个继承了父类的子类既可能是为了增加一个父类没有的功能，也可能是为了实现多态（不同的行为）</p>
-<p>那么解决方法是什么呢？答案是组合。我们可以在类里面加一个专门负责实现的字段，像以下的结构</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="keyword">val</span> testImpl: TestImpl</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">TestImpl</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>从此以后，Test专门负责功能层次，TestImpl专门负责实现层次</p>
-<h2 id="Strategy模式"><a href="#Strategy模式" class="headerlink" title="Strategy模式"></a>Strategy模式</h2><p>Strategy模式和Bridge模式有一点很像，同样是利用了组合的思想，将类里可以替换的部分利用组合来替换。它的目的是什么呢？是我们在不同情况下可以采取不同策略来处理事件，而策略的细节可以和本身的事件分离开。</p>
-<p>比如我现在有一个猜数字的游戏（数字大于等于0小于等于10），我需要在每一轮去猜一个数字，去和后台随机生成的数字比较，如果对了就算我赢。那么这个问题可以有很多种策略，我可以一直猜0，我也可以采用随机数返回，那我们就可以用一个strategy变量将策略抽离出来，Strategy类里面只有一个guess方法来返回一个数字。</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Strategy</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">guess</span><span class="params">()</span></span>: <span class="built_in">Int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BestStrategy</span>: <span class="type">Strategy &#123;</span></span></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">guess</span><span class="params">()</span></span>: <span class="built_in">Int</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GuessGame</span></span>(<span class="keyword">val</span> strategy: Strategy) &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">val</span> random = Random(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">guess</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">val</span> num = random.nextInt(<span class="number">10</span>)</span><br><span class="line">        <span class="keyword">if</span> (num == strategy.guess()) &#123;</span><br><span class="line">            println(<span class="string">&quot;Success!&quot;</span>)</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            println(<span class="string">&quot;Failed: <span class="variable">$num</span>&quot;</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> game = GuessGame(BestStrategy())</span><br><span class="line">    <span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">0.</span><span class="number">.100</span>) &#123;</span><br><span class="line">        game.guess()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
 
-
-<h2 id="Composite模式"><a href="#Composite模式" class="headerlink" title="Composite模式"></a>Composite模式</h2><p>Composite模式强调了<strong>容器和内容的一致性</strong>，这个模式其实很难实战用（因为我太菜了用不来），它给的例子就是这个模式最好的使用场景，文件和文件夹。</p>
-<p>文件和文件夹其实本质都是一个东西，在linux系统中，万物皆文件，文件夹其实只是一个存放了别的文件的inode的文件，所以在这个模式中，文件和文件夹会继承同一个父类。它通过保持这种一致性有什么好处呢？它可以往容器里放容器，这种递归的结构就比较方便，我们先看它是怎么实现一个能够输出目录的文件系统的。</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Entry</span> </span>&#123;</span><br><span class="line">    <span class="keyword">abstract</span> <span class="function"><span class="keyword">fun</span> <span class="title">getName</span><span class="params">()</span></span>: String</span><br><span class="line">    <span class="keyword">abstract</span> <span class="function"><span class="keyword">fun</span> <span class="title">getSize</span><span class="params">()</span></span>: <span class="built_in">Int</span></span><br><span class="line">    <span class="keyword">abstract</span> <span class="function"><span class="keyword">fun</span> <span class="title">printList</span><span class="params">(prefix: <span class="type">String</span>)</span></span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">open</span> <span class="function"><span class="keyword">fun</span> <span class="title">add</span><span class="params">(entry: <span class="type">Entry</span>)</span></span> &#123;</span><br><span class="line">        <span class="keyword">throw</span> FileNotFoundException()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">printList</span><span class="params">()</span></span> &#123;</span><br><span class="line">        printList(<span class="string">&quot;&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">toString</span><span class="params">()</span></span>: String &#123;</span><br><span class="line">        <span class="keyword">return</span> getName() + <span class="string">&quot;(&quot;</span> + getSize() + <span class="string">&quot;)&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Directory</span></span>(<span class="keyword">private</span> <span class="keyword">val</span> name: String) : Entry() &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">val</span> directory = ArrayList&lt;Entry&gt;()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">add</span><span class="params">(entry: <span class="type">Entry</span>)</span></span> &#123;</span><br><span class="line">        directory.add(entry)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">getName</span><span class="params">()</span></span>: String &#123;</span><br><span class="line">        <span class="keyword">return</span> name</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">getSize</span><span class="params">()</span></span>: <span class="built_in">Int</span> &#123;</span><br><span class="line">        <span class="keyword">var</span> size = <span class="number">0</span></span><br><span class="line">        <span class="keyword">val</span> it = directory.iterator()</span><br><span class="line">        <span class="keyword">while</span> (it.hasNext()) &#123;</span><br><span class="line">            size = it.next().getSize()</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> size</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">printList</span><span class="params">(prefix: <span class="type">String</span>)</span></span> &#123;</span><br><span class="line">        <span class="keyword">val</span> it = directory.iterator()</span><br><span class="line">        <span class="keyword">while</span> (it.hasNext()) &#123;</span><br><span class="line">            it.next().printList(<span class="string">&quot;<span class="variable">$prefix</span>/<span class="variable">$name</span>&quot;</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">File</span></span>(<span class="keyword">private</span> <span class="keyword">val</span> name: String, <span class="keyword">private</span> <span class="keyword">val</span> size: <span class="built_in">Int</span>): Entry() &#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">getName</span><span class="params">()</span></span>: String &#123;</span><br><span class="line">        <span class="keyword">return</span> name</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">getSize</span><span class="params">()</span></span>: <span class="built_in">Int</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> size</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">printList</span><span class="params">(prefix: <span class="type">String</span>)</span></span> &#123;</span><br><span class="line">        println(<span class="string">&quot;<span class="variable">$prefix</span>/<span class="variable">$this</span>&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">val</span> rootDir = Directory(<span class="string">&quot;root&quot;</span>)</span><br><span class="line">        <span class="keyword">val</span> binDir = Directory(<span class="string">&quot;bin&quot;</span>)</span><br><span class="line">        rootDir.add(binDir)</span><br><span class="line">        binDir.add(File(<span class="string">&quot;Head First Java&quot;</span>, <span class="number">52</span>))</span><br><span class="line">        binDir.add(File(<span class="string">&quot;CSAPP&quot;</span>, <span class="number">27</span>))</span><br><span class="line">        rootDir.printList()</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e: FileNotFoundException) &#123;</span><br><span class="line">        e.printStackTrace()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>可以看到，它保持了奇妙的一致性，通过递归的方式打印出了目录，假设不这么操作，想要在Directory里面打印路径，还得先判断Directory里面是Directory还是File，显然会更加复杂。</p>
-<p>其实有很多场景和这个很像，比如View和ViewGroup，但是由于这样的代码需要在开始的时候就设计好，半路是很难改成Composite模式的。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这几种模式其中我认为Builder是相对重要的，其他几种吸收设计思想即可，设计模式本质是基于面向对象的继承和组合两大特性，从这几种设计模式中能够看出组合的妙处和重要性，能够利用好组合的优点，这些设计模式也能够在需要的时候当场推导出来。</p>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/img/alipay.jpg">
-                      <span class="reward-type">支付宝</span>
-                    </div>
-                    
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/img/weixin.png">
-                      <span class="reward-type">微信</span>
-                    </div>
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
         </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
-        </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2022/08/08/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%80%BB%E7%BB%93%EF%BC%88%E4%BA%8C%EF%BC%89/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2022/11/30/TSP%20%E7%8A%B6%E5%8E%8Bdp%E8%A7%A3%E6%B3%95/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          TSP 状压dp解法
-        
-      </div>
-    </a>
   
   
-    <a href="/2022/08/04/View%E7%9A%84%E4%BA%8B%E4%BB%B6%E5%88%86%E5%8F%91%E6%9C%BA%E5%88%B6%E6%B5%85%E6%9E%90/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">View的事件分发机制浅析</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -391,8 +226,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
